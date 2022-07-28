@@ -1,0 +1,21 @@
+{
+  "name": "sbs-plus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "serve": "pnpm run serve --parallel --filter ./packages/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.15.8"
+  },
+  "dependencies": {
+    "vue": "^3.2.37"
+  }
+}
