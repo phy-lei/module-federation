@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <button id="webpack-button" class="button">Webpack Button</button>
+    <button id="webpack-button" class="button">Webpack Button123</button>
   </div>
 </template>
 
@@ -9,15 +9,15 @@
 export default {
   data: function () {
     return {
-      title: ''
-    }
-  }
-}
+      title: '',
+    };
+  },
+};
 </script>
 
 <style scoped>
 .button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4caf50; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -27,4 +27,3 @@ export default {
   font-size: 16px;
 }
 </style>
-

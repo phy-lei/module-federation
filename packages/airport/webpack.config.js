@@ -5,7 +5,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   output: {
-    publicPath: 'http://localhost:8081/',
+    publicPath: 'http://localhost:8080/',
   },
 
   resolve: {
@@ -13,7 +13,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 8081,
+    port: 8080,
     historyApiFallback: true,
     hot: true,
     headers: {
@@ -57,13 +57,13 @@ module.exports = {
       filename: '[name].[contenthash].css',
     }),
     new ModuleFederationPlugin({
-      name: 'transport_aircraft',
+      name: 'airport',
       filename: 'remoteEntry.js',
-      remotes: {},
-      exposes: {
-        './Header': './src/modules/Header/Header.vue',
-        './About': './src/modules/About/About.vue',
+      // library: {type: 'module'},
+      remotes: {
+        remote: 'transport_aircraft@http://127.0.0.1:8081/remoteEntry.js',
       },
+      exposes: {},
       shared: require('../../package.json').dependencies,
     }),
     new HtmlWebPackPlugin({

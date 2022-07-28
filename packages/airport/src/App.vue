@@ -1,10 +1,12 @@
 <script setup>
 import { computed, defineAsyncComponent, ref } from 'vue';
+// import About from 'remote/About';
 
-const About = defineAsyncComponent(() => import(`remote/About`));
+const About = defineAsyncComponent(() => import('remote/About'));
+const Button = defineAsyncComponent(() => import('./components/Button.vue'));
 
 console.log(
-  '%c [ xxx ]',
+  '%c [ 123 ]',
   'font-size:13px; background:pink; color:#bf2c9f;',
   About
 );
@@ -14,12 +16,11 @@ console.log(
   <div class="mt-10 text-3xl mx-auto max-w-6xl">
     <About></About>
     <div>
-      <button class="bg-blue-500 rounded py-2 px-4 font-light text-white">
-        addOne
-      </button>
+      <Button class="bg-blue-500 rounded py-2 px-4 font-light text-white">
+      </Button>
     </div>
     <div class="mt-10">
-      12
+      123222
       <!-- <router-view></router-view> -->
     </div>
   </div>

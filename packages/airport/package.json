@@ -4,15 +4,11 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@vue/cli-service": "~5.0.0",
-    "@vue/cli-plugin-babel": "~5.0.0"
-  }
+  "devDependencies": {}
 }
