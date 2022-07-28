@@ -1,6 +1,15 @@
 <template>
   <div class="box">这是一个 About 的界面</div>
+  <div>{{ count }}</div>
 </template>
+
+<script setup>
+defineProps({
+  count: {
+    type: Number,
+  },
+});
+</script>
 
 <style>
 .box {
