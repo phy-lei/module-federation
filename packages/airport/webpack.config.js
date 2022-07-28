@@ -64,6 +64,7 @@ module.exports = {
         remote: 'transport_aircraft@http://127.0.0.1:8081/remoteEntry.js',
       },
       exposes: {},
+      // 当模块联邦有exposes 会热更新失效 若没有exposes项 需要加上shared 不然热更新也会失效
       shared: require('../../package.json').dependencies,
     }),
     new HtmlWebPackPlugin({
