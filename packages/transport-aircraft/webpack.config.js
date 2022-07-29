@@ -64,7 +64,18 @@ module.exports = {
         './Header': './src/modules/Header/Header.vue',
         './About': './src/modules/About/About.vue',
       },
-      shared: require('../../package.json').dependencies,
+      shared: {
+        'vue-router': {
+          // singleton: true,
+          // import: false,
+          requiredVersion: '^4.0.0',
+        },
+        'vue': {
+          // singleton: true,
+          // import: false,
+          requiredVersion: '^3.0.0',
+        },
+      },
     }),
     new HtmlWebPackPlugin({
       template: './src/index.html',

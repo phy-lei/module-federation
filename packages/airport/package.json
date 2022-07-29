@@ -10,5 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {}
+  "dependencies": {
+    "vue-router": "^4.1.3"
+  }
 }
