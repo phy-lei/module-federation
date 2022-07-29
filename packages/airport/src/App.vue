@@ -24,9 +24,8 @@ const add = () => {
     <div>
       <button @click="add">add</button>
     </div>
-    <div class="mt-10">
-      123222
-      <!-- <router-view></router-view> -->
+    <div>
+      <router-view></router-view>
     </div>
   </div>
 </template>
