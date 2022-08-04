@@ -1,6 +1,8 @@
 import * as vueRouter from 'vue-router';
+import { modulesRoute } from '../../../../dynamicFile/index';
 
 const routes: vueRouter.RouteRecordRaw[] = [
+
   {
     path: '/',
     name: 'Header',
@@ -8,18 +10,15 @@ const routes: vueRouter.RouteRecordRaw[] = [
   },
 ];
 
+routes.push(...modulesRoute as vueRouter.RouteRecordRaw[]);
+console.log('%c [ modulesRoute ]', 'font-size:13px; background:pink; color:#bf2c9f;', modulesRoute);
+
+console.log('%c [ routes ]', 'font-size:13px; background:pink; color:#bf2c9f;', routes);
+
 const router = vueRouter.createRouter({
   history: vueRouter.createWebHashHistory(),
   routes,
 });
-
-setTimeout(() => {
-  router.addRoute({
-    path: '/about',
-    name: 'about',
-    component: () => import('remote/About'),
-  })
-}, 5000)
 
 export default router;
 

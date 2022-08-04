@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vueuse/core": "^9.0.2",
+    "pinia": "^2.0.17",
     "vue-router": "^4.1.3"
   }
 }

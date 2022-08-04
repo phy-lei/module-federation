@@ -1,7 +1,9 @@
+const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const { exposeModules } = require('../../dynamicFile/index.js');
 
 module.exports = {
   output: {
@@ -10,6 +12,11 @@ module.exports = {
 
   resolve: {
     extensions: ['.tsx', '.ts', '.vue', '.jsx', '.js', '.json'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      'packages': path.resolve(__dirname, '../'),
+      'pinia': path.resolve(__dirname, '../airport/node_modules/pinia/'),
+    },
   },
 
   devServer: {
@@ -45,8 +52,19 @@ module.exports = {
         ],
       },
       {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: {
+          loader: 'url-loader',
+        },
+      },
+      {
         test: /\.(css|s[ac]ss)$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
     ],
   },
@@ -60,20 +78,17 @@ module.exports = {
       name: 'transport_aircraft',
       filename: 'remoteEntry.js',
       remotes: {},
-      exposes: {
-        './Header': './src/modules/Header/Header.vue',
-        './About': './src/modules/About/About.vue',
-      },
+      exposes: exposeModules,
       shared: {
-        'vue-router': {
-          // singleton: true,
-          // import: false,
-          requiredVersion: '^4.0.0',
-        },
-        'vue': {
-          // singleton: true,
-          // import: false,
-          requiredVersion: '^3.0.0',
+        // vue: {
+        //   // singleton: true,
+        //   // import: false,
+        //   requiredVersion: '^3.0.0',
+        // },
+        ...require('../../package.json').dependencies,
+        ...require('../airport/package.json').dependencies,
+        'element-plus': {
+          requiredVersion: '^2.2.12',
         },
       },
     }),
