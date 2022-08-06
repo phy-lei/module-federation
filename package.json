@@ -10,7 +10,7 @@
     "generateModulesAndRoutes": "node scripts/generateModulesAndRoutes.js",
     "serve-remote": "cross-env MODE_ENV=remote npm run generateModulesAndRoutes && pnpm run serve --parallel --filter ./packages/",
     "serve-normal": "cross-env MODE_ENV=normal npm run generateModulesAndRoutes && pnpm run serve --parallel --filter ./packages/",
-    "build": "pnpm run build --parallel --filter ./packages/"
+    "build": "cross-env MODE_ENV=remote npm run generateModulesAndRoutes pnpm run build --parallel --filter ./packages/"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,7 @@
     "@typescript-eslint/parser": "^5.27.0",
     "@vue/compiler-sfc": "^3.2.19",
     "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "eslint": "^8.16.0",
