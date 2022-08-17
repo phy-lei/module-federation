@@ -4,6 +4,7 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const { outputDir } = require('../../dynamicFile/index.js');
 
 // 剔除某个对象key
 const omitObjKey = (obj, uselessKeys) =>
@@ -15,7 +16,7 @@ module.exports = (env) => {
   const webpack_config = {
     output: {
       publicPath: 'auto',
-      path: path.resolve(__dirname, './dist'),
+      path: path.resolve(__dirname, `./${outputDir}`),
       filename: 'static/js/[name].[contenthash:8].js',
       chunkFilename: 'static/js/[name].[contenthash:8].js',
       assetModuleFilename: 'static/[hash][ext][query]', // 静态资源放置地址
@@ -24,7 +25,7 @@ module.exports = (env) => {
     resolve: {
       extensions: ['.tsx', '.ts', '.vue', '.jsx', '.js', '.json'],
       alias: {
-        '@': path.resolve(__dirname, 'src'),
+        '@ap': path.resolve(__dirname, 'src'),
         'packages': path.resolve(__dirname, '../'),
       },
     },
@@ -117,15 +118,22 @@ module.exports = (env) => {
 
     plugins: [
       new VueLoaderPlugin(),
+      // record bug: css加上hash会热更新报错 生产环境才加上hash
       new MiniCssExtractPlugin({
-        filename: 'static/css/[name].[contenthash].css',
+        filename: env.WEBPACK_BUILD
+          ? 'static/css/[name].[contenthash].css'
+          : 'static/css/[name].css',
       }),
       new ModuleFederationPlugin({
         name: 'airport',
         filename: 'remoteEntry.js',
         // library: {type: 'module'},
         remotes: {
-          remote: 'transport_aircraft@http://127.0.0.1:8001/remoteEntry.js',
+          remote: `transport_aircraft@${
+            env.WEBPACK_BUILD
+              ? 'http://127.0.0.1:8001'
+              : 'http://127.0.0.1:8001'
+          }/remoteEntry.js`,
         },
 
         exposes: {},

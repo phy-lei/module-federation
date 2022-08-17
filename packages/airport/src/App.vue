@@ -22,7 +22,7 @@ const add = () => {
   <div class="mt-10 text-3xl mx-auto max-w-6xl">
     <About :count="count"></About>
     <div>
-      <button @click="add">add</button>
+      <el-button @click="add">add</el-button>
     </div>
     <div>
       <router-view></router-view>

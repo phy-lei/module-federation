@@ -18,5 +18,8 @@
     "source.fixAll.eslint": true
   },
   "editor.formatOnSave": true,
-  "prettier.quoteProps": "consistent" //对象的key保持一致
+  "prettier.quoteProps": "consistent", //对象的key保持一致
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }

@@ -26,7 +26,7 @@ module.exports = (env) => {
     resolve: {
       extensions: ['.tsx', '.ts', '.vue', '.jsx', '.js', '.json'],
       alias: {
-        '@': path.resolve(__dirname, 'src'),
+        '@ta': path.resolve(__dirname, 'src'),
         'packages': path.resolve(__dirname, '../'),
         'pinia': path.resolve(__dirname, '../airport/node_modules/pinia/'),
         // 'element-plus': path.resolve(
@@ -124,8 +124,11 @@ module.exports = (env) => {
 
     plugins: [
       new VueLoaderPlugin(),
+      // record bug: css加上hash会热更新报错 生产环境才加上hash
       new MiniCssExtractPlugin({
-        filename: 'static/css/[name].[contenthash].css',
+        filename: env.WEBPACK_BUILD
+          ? 'static/css/[name].[contenthash].css'
+          : 'static/css/[name].css',
       }),
       new ModuleFederationPlugin({
         name: 'transport_aircraft',

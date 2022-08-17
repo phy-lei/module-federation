@@ -2,13 +2,31 @@
   "name": "transport-aircraft",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "src/index.js",
   "scripts": {
     "serve": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "lint": "eslint --fix --ext .tsx,.ts,.js,vue --fix ./src",
+    "lint:fix": "npm run lint -- --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {}
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "dependencies": {
+    "@phy/utils": "workspace:^1.0.0"
+  },
+  "peerDependencyRules": {
+    "ignoreMissing": [
+      "vue",
+      "element-plus"
+    ]
+  },
+  "dependenciesMeta": {
+    "@phy/utils": {
+      "injected": true
+    }
+  }
 }
