@@ -7,11 +7,7 @@ const Button = defineAsyncComponent(() => import('./components/Button.vue'));
 
 const count = ref(0);
 
-console.log(
-  '%c [ 123 ]',
-  'font-size:13px; background:pink; color:#bf2c9f;',
-  About
-);
+console.log('%c [ 123 ]', 'font-size:13px; background:pink; color:#bf2c9f;', About);
 
 const add = () => {
   count.value++;
